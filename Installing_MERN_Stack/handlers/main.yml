@@ -1,0 +1,7 @@
+---
+# handlers file for Installing_MERN_Stack
+#
+- name: enable_mongod
+  service:
+    name: mongod
+    enabled: yes

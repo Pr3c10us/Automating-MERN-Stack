@@ -1,0 +1,6 @@
+---
+# vars file for Installing_MERN_Stack
+#
+packages:
+  - nodejs
+  - npm

@@ -1,0 +1,37 @@
+---
+
+- name: update repo cache
+  apt:
+    update_cache: yes
+
+- name: Installing node and npm
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+
+- name: Getting apt-key for mongodb
+  apt_key:
+    url: "https://www.mongodb.org/static/pgp/server-4.4.asc"
+    state: present
+
+- name: Getting repo for mongodb
+  apt_repository:
+    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse
+    state: present
+
+- name: Update system repo
+  apt:
+    update_cache: yes
+
+- name: Installing mongodb
+  package:
+    name: mongodb-org
+    state: present
+
+- name: Start mongod.service
+  service:
+    name: mongod.service
+    state: started
+  notify:
+    - enable_mongod

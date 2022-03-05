@@ -1,0 +1,8 @@
+---
+
+- name: Installing MERN stack
+  hosts: localhost
+  become: yes
+
+  roles: 
+    - { role: Installing_MERN_Stack }
